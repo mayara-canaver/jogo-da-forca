@@ -4,26 +4,35 @@ import random
 import textos
 import jogo
 
-def instrucao():
-    print("O jogo da forca é um jogo em que o jogador tem que acertar qual é a palavra proposta,"
-          " tendo como dica o número de letras e o tema ligado à palavra.\n"
-          "A cada letra errada, é desenhada uma parte do corpo do enforcado.")
+def how_to_play():
+    print("Welcome to Hangman!")
+    print("Guess the secret word one letter at a time.")
+    print("You'll be given hints like the number of letters and a category.")
+    print("For each incorrect guess, a part of the hangman is drawn.")
+    print("Be careful, you have only 6 incorrect guesses before you lose!")
+
     return menu()
 
 def menu():
-    print("\n\n----------------- Bem Vindo ao Jogo da Velha -----------------\n")
-    print("1 - Jogar")
-    print("2 - Intruções")
-    print("3 - Sair\n")
-    x = int(input("Escolha uma opção:"))
+    print("\n\n----------------- Welcome to Hangman Game! -----------------\n")
+    print("1 - Start Game")
+    print("2 - How to Play")
+    print("3 - Exit\n")
 
-    if x == 1:
-        jogo.fase()
-    if x == 2:
-        instrucao()
-    if x == 3:
-        sys.exit()
-    print(random.choice(textos.mensagem_erro))
-    return menu()
+    while True:
+        choice = input("Make your selection:")
+
+        if choice == '1':
+            jogo.fase()
+
+        elif choice == '2':
+            how_to_play()
+
+        elif choice == '3':
+            sys.exit()
+
+        else:
+            print(random.choice(textos.mensagem_erro))
+            return menu()
 
 menu()
