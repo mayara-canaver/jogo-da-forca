@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 import textos
 
-def palavra_online():
+def get_word_online():
     html_file = requests.get("https://www.palabrasaleatorias.com/").text
     soup = BeautifulSoup(html_file, 'lxml')
     word = soup.find(attrs={'style':'font-size:3em; color:#6200C5;'}).text
@@ -28,92 +28,102 @@ def ganhou(i, secret_word, right_letter):
     
     return 0
 
-def insere_letra():
-    letra = input("Digite uma letra\n\n")
+def insert_letter():
+    letter = input("Digite uma letra\n\n")
 
-    if letra.isdigit():
+    if letter.isdigit():
         print(random.choice(textos.mensagem_erro))
 
-        return insere_letra()
+        return insert_letter()
     
-    return letra
+    return letter
 
-def verifica_letra(letra, secret_word, right_letter, wrong_letter):
-    if letra in secret_word and letra not in right_letter:
-        right_letter.append(letra)
+def verify_letter(letter, secret_word, right_letter, wrong_letter):
+    if letter in secret_word and letter not in right_letter:
+        right_letter.append(letter)
 
         return True
     
-    if letra not in secret_word and letra not in wrong_letter:
-        wrong_letter.append(letra)
+    if letter not in secret_word and letter not in wrong_letter:
+        wrong_letter.append(letter)
 
         return False
 
-def letras_restante(secret_word, right_letter):
-    esp = ""
+def letters_to_guess(secret_word, right_letter):
+    blank_space = ""
 
-    for letras in secret_word:
-        if letras not in right_letter:
-            esp = "_ "
+    for letters in secret_word:
+        if letters not in right_letter:
+            blank_space = "_ "
 
-        elif letras in right_letter:
-            esp = letras
+        elif letters in right_letter:
+            blank_space = letters
 
-        print(esp, end="")
+        print(blank_space, end="")
 
     print("")
 
-def escolher_banco():
+def choose_database():
     print("\n\n----------- Temas -----------\n")
     print("1 - Animais")
     print("2 - Alimentos")
     print("3 - Objetos")
     print("4 - Nível Hard (Apenas Online)\n")
-    choice = int(input("Escolha um tema:"))
 
-    if choice == 1:
-        return random.choice(textos.banco_animais)
-    if choice == 2:
-        return random.choice(textos.banco_alimentos)
-    if choice == 3:
-        return random.choice(textos.banco_objetos)
-    if choice == 4:
-        return True
-    print(random.choice(textos.mensagem_erro))
-    return escolher_banco()
+    while True:
+        choice = input("Escolha um tema:")
 
-def final():
-    print("Deseja jogar novamente?\n")
-    print("1 - Sim")
-    print("2 - Não\n")
-    choice = int(input("Sua escolha:\n"))
-
-    if choice == 1:
-        return fase()
-    
-    if choice == 2:
-        sys.exit()
+        if choice == '1':
+            return random.choice(textos.banco_animais)
         
-    print(random.choice(textos.mensagem_erro))
-    return final()
+        elif choice == '2':
+            return random.choice(textos.banco_alimentos)
+        
+        elif choice == '3':
+            return random.choice(textos.banco_objetos)
+        
+        elif choice == '4':
+            return get_word_online()
+        
+        else:
+            print(random.choice(textos.mensagem_erro))
+
+def play_again():
+    print("Another round? Let's go!\n")
+    print("1 - Yes")
+    print("2 - No\n")
+
+    while True:
+        choice = input("Your choice:\n")
+
+        if choice == '1':
+            return fase()
+        
+        elif choice == '2':
+            sys.exit()
+
+        else:
+            print("Invalid input. Please try again.")
 
 def fase():
-    right_letter = []
-    wrong_letter = []
+    right_letter, wrong_letter = [], []
 
     i = 0
 
-    secret_word = escolher_banco()
+    secret_word = choose_database()
 
-    if secret_word:
-        secret_word = palavra_online()
     while ganhou(i, secret_word, right_letter) == 0:
         print(str(textos.fases[i]))
-        letras_restante(secret_word, right_letter)
-        letra = insere_letra()
-        if verifica_letra(letra, secret_word, right_letter, wrong_letter):
+
+        letters_to_guess(secret_word, right_letter)
+
+        letter = insert_letter()
+
+        if verify_letter(letter, secret_word, right_letter, wrong_letter):
             print("Letra correta!")
+
         else:
             i += 1
             print("Letra errada, tente novamente.")
-    final()
+
+    play_again()
