@@ -1,8 +1,10 @@
+import sys
+
+import requests
+from bs4 import BeautifulSoup
+
 import random
 import textos
-import sys
-from bs4 import BeautifulSoup
-import requests
 
 def palavra_online():
     html_file = requests.get("https://www.palabrasaleatorias.com/").text
