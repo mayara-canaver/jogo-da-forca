@@ -1,7 +1,8 @@
 import sys
+import random
+
 import textos
 import jogo
-import random
 
 def instrucao():
     print("O jogo da forca é um jogo em que o jogador tem que acertar qual é a palavra proposta,"
