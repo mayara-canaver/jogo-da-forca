@@ -14,7 +14,7 @@ This project was created as a learning exercise to practice fundamental Python p
 To download the project, use the following command:
 
 ```bash
-git clone https://github.com/mayara-canaver/jogo-da-forca.git
+git clone https://github.com/mayara-canaver/hangman-game-in-terminal.git
 ```
 
 To install the required dependencies, run the following command:
