@@ -1,4 +1,4 @@
-fases = [
+phases = [
     " ____\n" \
     "  |  |\n" \
     "     |\n" \
@@ -37,14 +37,32 @@ fases = [
     "------"
 ]
 
-banco_animais = ["cachorro", "gato", "peixe", "passaro", "cavalo", "vaca", "boi", "galinha", "macaco",
-                            "ovelha", "cabra", "galo", "baleia"]
+animals_storage = [
+    "dog", "cat", "fish", "bird", "rabbit", 
+    "hamster", "pig", "cow", "horse","ovelha", 
+    "cabra", "galo", "baleia", "sheep", "chicken",
+    "lion", "tiger", "bear", "wolf", "rat",
+    "fox", "mouse", "bee", "frog", "snake",
+    ]
 
-banco_alimentos = ["pao", "laranja", "macarrao", "ovo", "banana", "leite", "carne", "frango", "tomate",
-                            "mel", "cebola", "aveia"]
+foods_storage = [
+    "bread", "orange", "pasta", "egg", "banana",
+    "milk", "beef", "salt", "sugar", "honey",
+    "onion", "cheese", "water", "apple", "strawberry",
+    "watermelon", "melon", "cherry", "potato", "carrot",
+    ]
 
-banco_objetos = ["vela", "lapis", "regua", "caneta", "lampada", "mesa", "relogio", "travesseiro", "cama",
-                            "monitor", "tv", "estante", "livro"]
+objects_storage = [
+    "notebook", "pencil", "computer", "phone", "lamp",
+    "bag", "clock", "car", "bed", "monitor",
+    "tv", "desk", "book", "key", "shower",
+    "sink", "ruler", "shirts", "pants", "hat",
+    ]
 
-mensagem_erro = ["Você digitou um valor errado, tente novamente!", "Tente novamente.", "Está incorreto.",
-                 "Escreva novamente com outro valor", "Leia novamente."]
+error_message = [
+    "You have entered an incorrect value. Please try again!",
+    "Try again.",
+    "That's wrong.",
+    "Type another value.",
+    "Please read the instructions again!"
+    ]
