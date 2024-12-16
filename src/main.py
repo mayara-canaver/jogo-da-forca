@@ -23,7 +23,7 @@ def menu():
         choice = input("Make your selection:")
 
         if choice == '1':
-            hangman_functions.fase()
+            hangman_functions.phase()
 
         elif choice == '2':
             how_to_play()
